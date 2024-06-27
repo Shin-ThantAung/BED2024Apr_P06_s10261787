@@ -8,9 +8,13 @@ const validateBook = require("./middlewares/validateBook");
 const app = express();
 const port = 3000;
 
+const staticMiddleware = express.static("public");
+
 // Include body-parser middleware to handle JSON data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // For form data handling
+
+app.use(staticMiddleware);
 
 app.get("/booksCount", booksController.bookCount);
 app.get("/books", booksController.getAllBooks);
